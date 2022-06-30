@@ -19,4 +19,15 @@ function findOpponent(tier){
     document.querySelector(".player").innerHTML = setUpFight();
     //Buttons
     document.querySelector(".command button").style.visibility = "hidden";
+    if (!calcFirst(player.agility, enemy.agility)){
+        player.health -= calcNumAttack(enemy) * calcAttack(enemy);
+        document.querySelector("#player-health").innerHTML = player.health.toString();
+    }
+}
+function attack(){
+    let attack = calcAttack(player)
+    let numAttack = calcNumAttack(player);
+    enemy.health -= numAttack * attack;
+    document.querySelector("#enemy-health").innerHTML = enemy.health.toString();
+    alert("You dealt: " + numAttack + "x " + attack);
 }

@@ -69,5 +69,8 @@ body{
     background-repeat: no-repeat;
     background-size: 200px 200px;
     object-fit: contain;
-
+}
+.buttons{
+    display: flex;
+    justify-content: space-around;
 }
