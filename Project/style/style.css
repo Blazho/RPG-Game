@@ -1,0 +1,73 @@
+body{
+    background: #5f5f5f;
+}
+.header{
+    background: orange;
+    padding: 12px;
+    border: saddlebrown 5px solid;
+    margin-bottom: 12px;
+}
+.header h2{
+    color: #75180b;
+    font-family: Arial serif;
+    text-align: center;
+}
+.header h3{
+    color: #75180b;
+    font-family: SansSerif sans-serif;
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+    text-align: center;
+}
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+.player{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+    background: rgba(255, 140, 0, 0.8);
+}
+.player .toggle:hover{
+    background: rgba(255, 165, 0, 0.7);
+    color: rgba(0, 50, 0, 0.75);
+    border: 2px orange solid;
+}
+.player a{
+    text-decoration: none;
+    padding: 12px;
+    color: #75180b;
+    font-size: 1.1em;
+    border: 2px rgba(255, 140, 0, 0.8) solid;
+    min-width: 250px;
+}
+.player img{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+.command{
+    display: flex;
+    justify-content: center;
+}
+.command button{
+    visibility: hidden;
+    width: 250px;
+    height: 50px;
+    color: rgba(255, 0, 0, 0.8);
+    font-size: 1.2em;
+    background: #75180b;
+    border: rgba(255, 140, 0, 0.8) solid 4px;
+}
+.spliter{
+    margin: auto 0;
+    width: 200px;
+    height: 200px;
+    background-image: url("../img/fight.png");
+    background-repeat: no-repeat;
+    background-size: 200px 200px;
+    object-fit: contain;
+
+}
