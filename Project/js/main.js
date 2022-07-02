@@ -21,18 +21,18 @@ function findOpponent(tier){
     document.querySelector(".player").innerHTML = setUpFight();
     //Buttons
     document.querySelector(".command button").style.visibility = "hidden";
+    //Check who is faster
     if (!calcFirst(player.agility, enemy.agility)){
-        player.health -= calcNumAttack(enemy) * calcAttack(enemy);
-        document.querySelector("#player-health").innerHTML = "Health: " + player.health.toString();
+        calcDamage(enemy, player);
+        updateHealth(player);
         alert("You lost health!")
     }
 }
 function attack(){
-    let attack = calcAttack(player)
-    let numAttack = calcNumAttack(player);
-    enemy.health -= numAttack * attack;
-    document.querySelector("#enemy-health").innerHTML = "Health: " + enemy.health.toString();
-    alert("You dealt: " + numAttack + "x " + attack);
+    let obj = calcDamage(player, enemy);
+    updateHealth(enemy, false);
+    alert("You dealt: " + obj.numAttacks + " x " + obj.attack);
+    //Check when to update tier for stronger enemy
     if (enemy.health<=0){
         alert("You won!");
         if (first){
@@ -46,11 +46,13 @@ function attack(){
         document.querySelector(".command button").outerHTML = "<button onclick=\"findOpponent("+ tier +")\">Search for an opponent</button>";
         document.querySelector(".command button").style.visibility = "visible";
     }else {
-        player.health -= calcNumAttack(enemy) * calcAttack(enemy);
-        document.querySelector("#player-health").innerHTML = "Health: " + player.health.toString();
+        calcDamage(enemy, player);
+        updateHealth(player);
         alert("You have taken damage!")
         if (player.health <= 0){
             alert("You lost please refresh the page to start again!");
+            document.querySelector(".buttons").style.visibility = "hidden";
+            document.querySelector(".refresh-button-div").style.visibility = "visible";
         }
     }
 }

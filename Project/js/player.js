@@ -10,7 +10,7 @@ class Player{
                 break;
             case "Mage":
                 this.class = "Mage";
-                this.health = 1000;
+                this.health = 100;
                 this.strength = 100;
                 this.agility = 100;
                 this.mana = 105;
@@ -31,7 +31,8 @@ class Player{
                 break;
         }
     }
-    getClassAvatar(){
+    getClassAvatar(playerHealth = player.health){
+        player.health = playerHealth;
         return "<a class='toggle'>\n" +
             "            <h2>" + player.class + "</h2>\n" +
             "            <img src=\"img/" + player.class.toLowerCase() + ".jpg\" alt=\"" + player.class + "\">\n" +
