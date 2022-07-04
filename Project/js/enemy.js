@@ -5,8 +5,9 @@ class Enemy{
                 this.class = "Goblin";//Hobo goblin
                 this.health = randomIntFromInterval(800, 990);
                 this.strength = randomIntFromInterval(80, 99);
-                this.agility = randomIntFromInterval(80, 100);
+                this.agility = randomIntFromInterval(10, 160);
                 this.mana = randomIntFromInterval(80, 99);
+                this.defence = 0;
                 break;
             case 2:
                 this.class = "Orc";//High ork
@@ -14,6 +15,7 @@ class Enemy{
                 this.strength = randomIntFromInterval(100, 120);
                 this.agility = randomIntFromInterval(100, 120);
                 this.mana = randomIntFromInterval(100, 120);
+                this.defence = 0;
                 break;
             case 3:
                 this.class = "Troll";// Ogre
@@ -21,6 +23,7 @@ class Enemy{
                 this.strength = randomIntFromInterval(110, 130);
                 this.agility = randomIntFromInterval(110, 130);
                 this.mana = randomIntFromInterval(110, 130);
+                this.defence = 0;
                 break;
         }
     }

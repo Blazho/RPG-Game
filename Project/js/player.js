@@ -7,13 +7,15 @@ class Player{
                 this.strength = 105;
                 this.agility = 100;
                 this.mana = 100;
+                this.defence = 0;
                 break;
             case "Mage":
                 this.class = "Mage";
-                this.health = 100;
+                this.health = 300;
                 this.strength = 100;
                 this.agility = 100;
-                this.mana = 105;
+                this.mana = 1000;
+                this.defence = 0.3;
                 break;
             case "Hunter":
                 this.class = "Hunter";
@@ -21,6 +23,7 @@ class Player{
                 this.strength = 101;
                 this.agility = 101;
                 this.mana = 101;
+                this.defence = 0;
                 break;
             case "Rogue":
                 this.class = "Rogue";
@@ -28,6 +31,7 @@ class Player{
                 this.strength = 100;
                 this.agility = 145;
                 this.mana = 100;
+                this.defence = 0;
                 break;
         }
     }

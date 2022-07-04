@@ -2,6 +2,7 @@ let player;
 let enemy;
 let tier = 1;
 let first = true;
+let defence = 0;
 // Set up battleground and class
 function selectClass(playerClass){
     player = new Player(playerClass);
@@ -26,6 +27,7 @@ function findOpponent(tier){
         calcDamage(enemy, player);
         updateHealth(player);
         alert("You lost health!")
+        checkDefeat();
     }
 }
 function attack(){
@@ -33,26 +35,58 @@ function attack(){
     updateHealth(enemy, false);
     alert("You dealt: " + obj.numAttacks + " x " + obj.attack);
     //Check when to update tier for stronger enemy
+    console.log("Defence stacks: " + defence);
     if (enemy.health<=0){
         alert("You won!");
-        if (first){
-            first = false;
-        }else {
-            first = true;
-            tier++;
-        }
-        document.querySelector(".header h3").innerHTML = "Search for an opponent";
-        document.querySelector(".player").innerHTML = player.getClassAvatar();
-        document.querySelector(".command button").outerHTML = "<button onclick=\"findOpponent("+ tier +")\">Search for an opponent</button>";
-        document.querySelector(".command button").style.visibility = "visible";
+        setUpVictory();
     }else {
+        if (defence > 0){
+            defence --;
+        }else {
+            player.defence = 0;
+        }
         calcDamage(enemy, player);
         updateHealth(player);
         alert("You have taken damage!")
-        if (player.health <= 0){
-            alert("You lost please refresh the page to start again!");
-            document.querySelector(".buttons").style.visibility = "hidden";
-            document.querySelector(".refresh-button-div").style.visibility = "visible";
+        checkDefeat();
+    }
+}
+// Take reduced damage for two turns
+function defend(){
+    //Calc defensive power
+    player.defence =((player.strength * player.mana*0.1) - (enemy.strength * enemy.mana*0.1))*2 / (player.strength * player.mana*0.1);
+    if (player.defence < 0)
+        player.defence = 0;
+    else if (player.defence > 1){
+        player.defence = 0.9;
+    }
+    //Receive an attack form enemy
+    console.log("Player defence: " + player.defence);
+    calcDamage(enemy, player);
+    updateHealth(player);
+    alert("You lost health!")
+    defence += 2;
+    checkDefeat();
+}
+function dodge(){
+    if (calcDodge()){
+        let obj = calcDamage(player, enemy);
+        updateHealth(enemy, false);
+        alert("Successful evasion!")
+        alert("You dealt: " + obj.numAttacks + " x " + obj.attack);
+        //If enemy dead victory
+        if (enemy.health <= 0)
+            setUpVictory();
+    }
+    else {
+        if (defence > 0){
+            defence --;
+        }else {
+            player.defence = 0;
         }
+        calcDamage(enemy, player);
+        updateHealth(player);
+        alert("You have taken damage!")
+        checkDefeat();
     }
 }
