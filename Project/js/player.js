@@ -3,34 +3,34 @@ class Player{
         switch (classType) {
             case "Warrior":
                 this.class = "Warrior";
-                this.health = 1000;
-                this.strength = 105;
-                this.agility = 100;
-                this.mana = 100;
+                this.health = 1200;
+                this.strength = 190;
+                this.agility = 70;
+                this.mana = 300;
                 this.defence = 0;
                 break;
             case "Mage":
                 this.class = "Mage";
-                this.health = 300;
-                this.strength = 100;
-                this.agility = 100;
-                this.mana = 1000;
-                this.defence = 0.3;
+                this.health = 500;
+                this.strength = 30;
+                this.agility = 50;
+                this.mana = 1900;
+                this.defence = 0.6;
                 break;
             case "Hunter":
                 this.class = "Hunter";
                 this.health = 1000;
-                this.strength = 101;
-                this.agility = 101;
-                this.mana = 101;
+                this.strength = 120;
+                this.agility = 120;
+                this.mana = 600;
                 this.defence = 0;
                 break;
             case "Rogue":
                 this.class = "Rogue";
-                this.health = 1000;
-                this.strength = 100;
-                this.agility = 145;
-                this.mana = 100;
+                this.health = 800;
+                this.strength = 80;
+                this.agility = 180;
+                this.mana = 400;
                 this.defence = 0;
                 break;
         }

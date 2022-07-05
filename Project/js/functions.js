@@ -13,24 +13,27 @@ function setUpFight(){
         "<button onclick='defend()'>Defend</button>" +
         "<button onclick='dodge()'>Dodge</button>" +
         "</div>" +
+        "<h3 id='blocks'>0</h3>" +
         "</div>" +
         enemy.getEnemy();
 }
 function calcFirst(player, enemy){
     //Calculate who attacks first
-    return player >= enemy;
+    console.log(player*1.5 + ":" + enemy)
+    return player*1.5 >= enemy;
 }
 function calcAttack(attacker){
-    let attack = Math.floor(attacker.strength + (attacker.agility*0.30) + attacker.mana * 0.20);
+    let attack = Math.floor(attacker.strength + (attacker.agility*0.30) + attacker.mana * 0.40);
     attack += randomIntFromInterval(0, attack*0.05);
     console.log(attacker.class.toString() + ": " + attack);
     return attack;
 }
-function calcNumAttack(attacker){
-    let num = Math.floor(attacker.agility/70);
-    if (num === 0)
+function calcNumAttack(attacker, receiver){
+    let num = attacker.agility - receiver.agility;
+    num = Math.floor(num / receiver.agility) + 1;
+    console.log("Number of attacks by " + attacker.class + ": " + num);
+    if (num < 1)
         num = 1;
-    console.log(attacker.class + ": x" + num);
     return num;
 }
 //Updates the fighter health
@@ -45,7 +48,7 @@ function updateHealth(fighter, player = true){
 //Calculates the damage and returns number of attacks + damage per attack
 function calcDamage(attacker, receiver){
     let attack = Math.floor((1 - receiver.defence) * calcAttack(attacker));
-    let numAttacks = calcNumAttack(attacker);
+    let numAttacks = calcNumAttack(attacker, receiver);
     console.log(attack);
     console.log(numAttacks);
     receiver.health -= numAttacks * attack;
@@ -81,4 +84,7 @@ function setUpVictory(){
     document.querySelector(".player").innerHTML = player.getClassAvatar();
     document.querySelector(".command button").outerHTML = "<button onclick=\"findOpponent("+ tier +")\">Search for an opponent</button>";
     document.querySelector(".command button").style.visibility = "visible";
+}
+function updateBlock(){
+    document.getElementById("blocks").innerHTML = defence;
 }
