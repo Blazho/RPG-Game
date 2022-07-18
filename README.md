@@ -1,2 +1,2 @@
 # RPG-Game
-Game using js 
+Bad game using HTML css js 
